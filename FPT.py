@@ -55,12 +55,16 @@ background = pygame.image.load('images/nfbg.jpg')
 frog = pygame.transform.scale(pygame.image.load('images/idle01.png'),(96,96))
 saw_size=(random.randint(32,50))#Saw size
 saw = pygame.transform.scale(pygame.image.load('images/saw01.png'),(saw_size,saw_size)) #Random saw size
+title=pygame.image.load('images/title.png')
+instructions = pygame.image.load('images/instructions.png')
+instructions2 = pygame.image.load('images/instructions2.png')
 scrollspeed= 3
 clock=pygame.time.Clock()
 cords=(random.randrange(200,800),(random.randint(200,600)))#Random cooridnates for saw
-minecraft=pygame.font.Font('fonts/minecraft.ttf',24)
+#minecraft=pygame.font.Font('fonts/minecraft.ttf')
 # *********GAME LOOP**********
 game_state= "MENU"
+text='Press <s> to start'
 #exit loop
 running=True
 while running:
@@ -70,10 +74,16 @@ while running:
             running = False
         if game_state=='MENU':
             screen.blit(background,(0,0))
-            screen.blit(minecraft.render('Press <s> to start'))
-    screen.blit(background,(0,0))
-    screen.blit(frog,(50,500))
-    screen.blit(saw,cords)
+            #screen.blit(text,(200,300))
+            screen.blit(instructions,(00,500))
+            screen.blit(instructions2,(500,500))
+            screen.blit(title,(0,100))
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                game_state='PLAY'
+        if game_state == 'PLAY':
+            screen.blit(background,(0,0))
+            screen.blit(frog,(50,500))
+            screen.blit(saw,cords)
     pygame.display.flip()
 
 
