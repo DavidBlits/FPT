@@ -48,14 +48,19 @@ Features Added Beyond Level 3 Requirements:
 
 # *********SETUP**********
 import pygame
+import random
 width,height=1000,667
 screen = pygame.display.set_mode((width,height))
 background = pygame.image.load('images/nfbg.jpg')
-frog = pygame.image.load('images/idle01.png')
-saw = pygame.image.load('images/saw01.png')
+frog = pygame.transform.scale(pygame.image.load('images/idle01.png'),(96,96))
+saw_size=(random.randint(32,50))#Saw size
+saw = pygame.transform.scale(pygame.image.load('images/saw01.png'),(saw_size,saw_size)) #Random saw size
 scrollspeed= 3
 clock=pygame.time.Clock()
+cords=(random.randrange(200,800),(random.randint(200,600)))#Random cooridnates for saw
+minecraft=pygame.font.Font('fonts/minecraft.ttf',24)
 # *********GAME LOOP**********
+game_state= "MENU"
 #exit loop
 running=True
 while running:
@@ -63,7 +68,12 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if game_state=='MENU':
+            screen.blit(background,(0,0))
+            screen.blit(minecraft.render('Press <s> to start'))
     screen.blit(background,(0,0))
+    screen.blit(frog,(50,500))
+    screen.blit(saw,cords)
     pygame.display.flip()
 
 
