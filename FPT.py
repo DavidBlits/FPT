@@ -47,12 +47,24 @@ Features Added Beyond Level 3 Requirements:
 
 
 # *********SETUP**********
-
-
-
+import pygame
+width,height=1000,667
+screen = pygame.display.set_mode((width,height))
+background = pygame.image.load('images/nfbg.jpg')
+frog = pygame.image.load('images/idle01.png')
+saw = pygame.image.load('images/saw01.png')
+scrollspeed= 3
+clock=pygame.time.Clock()
 # *********GAME LOOP**********
-
-
+#exit loop
+running=True
+while running:
+    clock.tick(60)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    screen.blit(background,(0,0))
+    pygame.display.flip()
 
 
     # *********EVENTS**********
