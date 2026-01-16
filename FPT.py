@@ -49,6 +49,7 @@ Features Added Beyond Level 3 Requirements:
 # *********SETUP**********
 import pygame
 import random
+pygame.init()
 width,height=1000,667
 screen = pygame.display.set_mode((width,height))
 background = pygame.image.load('images/nfbg.jpg')
@@ -61,7 +62,7 @@ instructions2 = pygame.image.load('images/instructions2.png')
 scrollspeed= 3
 clock=pygame.time.Clock()
 cords=(random.randrange(200,800),(random.randint(200,600)))#Random cooridnates for saw
-#minecraft=pygame.font.Font('fonts/minecraft.ttf')
+minecraft=pygame.font.Font('fonts/minecraft.ttf',24)
 # *********GAME LOOP**********
 game_state= "MENU"
 text='Press <s> to start'
@@ -73,12 +74,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if game_state=='MENU':
+            text1=minecraft.render('Press <s> to start',True,(0,0,0))
             screen.blit(background,(0,0))
-            #screen.blit(text,(200,300))
+            screen.blit(text1,(400,400))
             screen.blit(instructions,(00,500))
             screen.blit(instructions2,(500,500))
             screen.blit(title,(0,100))
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN: #if mouse cliked change game states
                 game_state='PLAY'
         if game_state == 'PLAY':
             screen.blit(background,(0,0))
